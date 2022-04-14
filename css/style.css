@@ -111,3 +111,25 @@ footer p {
   font-size: 12pt;
   line-height: .5em;
 }
+
+#salesTitle {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 34pt;
+}
+
+#location-info {
+  display: flex;
+  justify-content: center;
+}
+
+th,
+tr,
+td {
+  width: 70px;
+  text-align: left;
+  border-style: solid;
+  border-color: black;
+  border-width: 1px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 11pt;
+}
