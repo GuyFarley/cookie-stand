@@ -2,6 +2,7 @@
 
 let hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
 
+// constructor function
 function City(name, minCustomers, maxCustomers, avgCookiesPerCustomer) {
   this.name = name;
   this.minCustomers = minCustomers;
@@ -11,6 +12,7 @@ function City(name, minCustomers, maxCustomers, avgCookiesPerCustomer) {
   this.totalCookies = this.generateTotalCookies(this.randomCookiesSoldPerHour);
 }
 
+// constructor methods
 City.prototype.generateRandomCustomersPerHour = function () {
   return randomInRange(this.minCustomers, this.maxCustomers);
 };
@@ -33,11 +35,6 @@ City.prototype.generateTotalCookies = function sumArray(sumArr) {
   return arraySum;
 };
 
-const containerElem = document.getElementById('location-info');
-
-const tableElem = document.createElement('table');
-containerElem.appendChild(tableElem);
-
 function randomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -48,6 +45,12 @@ const dubai = new City('Dubai', 11, 38, 3.7);
 const paris = new City('Paris', 20, 38, 2.3);
 const lima = new City('Lima', 2, 16, 4.6);
 let allStoreLocations = [seattle, tokyo, dubai, paris, lima];
+
+// table
+const containerElem = document.getElementById('location-info');
+
+const tableElem = document.createElement('table');
+containerElem.appendChild(tableElem);
 
 // header row
 const headerRow = document.createElement('tr');
