@@ -1,6 +1,7 @@
 'use strict';
 
-let hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
+const hours = ['6:00am', '7:00am', '8:00am', '9:00am', '10:00am', '11:00am', '12:00pm', '1:00pm', '2:00pm', '3:00pm', '4:00pm', '5:00pm', '6:00pm', '7:00pm'];
+let tableElem = null;
 
 // constructor function
 function City(name, minCustomers, maxCustomers, avgCookiesPerCustomer) {
@@ -40,10 +41,13 @@ function randomInRange(min, max) {
 }
 
 // table
-const containerElem = document.getElementById('location-info');
+function createTable() {
+  const containerElem = document.getElementById('location-info');
 
-const tableElem = document.createElement('table');
-containerElem.appendChild(tableElem);
+  tableElem = document.createElement('table');
+  containerElem.appendChild(tableElem);
+}
+createTable();
 
 // header row
 const tableHead = document.createElement('thead');
@@ -84,20 +88,11 @@ City.prototype.render = function () {
   totalCell.textContent = this.totalCookies;
 };
 
+// input from form
 const cookieFormElem = document.getElementById('cookie-stand-form');
 cookieFormElem.addEventListener('submit', handleSubmit);
 
-function handleSubmit(event) {
-  event.preventDefault();
-  const location = event.target.location.value;
-  const minCustomers = parseInt(event.target.minCustomers.value);
-  const maxCustomers = parseInt(event.target.maxCustomers.value);
-  const avgCookiesPerCustomer = parseFloat(event.target.avgCookies.value);
 
-  const newCity = new City(location, minCustomers, maxCustomers, avgCookiesPerCustomer);
-  allStoreLocations.push(newCity);
-  allStoreLocations[(allStoreLocations.length) - 1].render();
-}
 
 const allStoreLocations = [
   new City('Seattle', 23, 65, 6.3),
@@ -112,23 +107,47 @@ for (let i = 0; i < allStoreLocations.length; i++) {
 }
 
 // totals row
-const tableFoot = document.createElement('tfoot');
-tableElem.appendChild(tableFoot);
 
-const hourlyTotalsRow = document.createElement('tr');
-tableFoot.appendChild(hourlyTotalsRow);
+function getTotalsByHour() {
+  const tableFoot = document.createElement('tfoot');
+  tableElem.appendChild(tableFoot);
 
-const blankTotalCell = document.createElement('th');
-hourlyTotalsRow.appendChild(blankTotalCell);
-blankTotalCell.textContent = 'Totals';
+  const hourlyTotalsRow = document.createElement('tr');
+  tableFoot.appendChild(hourlyTotalsRow);
 
-for (let i = 0; i < hours.length; i++) {
-  const hourlyTotalsCell = document.createElement('th');
-  hourlyTotalsRow.appendChild(hourlyTotalsCell);
+  const blankTotalCell = document.createElement('th');
+  hourlyTotalsRow.appendChild(blankTotalCell);
+  blankTotalCell.textContent = 'Totals';
 
-  let totalSum = 0;
-  for (let j = 0; j < 5; j++) {
-    totalSum = totalSum + allStoreLocations[j].randomCookiesSoldPerHour[i];
+  for (let i = 0; i < hours.length; i++) {
+    let hourlyTotalsCell = document.createElement('th');
+    hourlyTotalsRow.appendChild(hourlyTotalsCell);
+
+    let totalSum = 0;
+    for (let j = 0; j < allStoreLocations.length; j++) {
+      totalSum = totalSum + allStoreLocations[j].randomCookiesSoldPerHour[i];
+    }
+    hourlyTotalsCell.textContent = totalSum;
   }
-  hourlyTotalsCell.textContent = totalSum;
 }
+getTotalsByHour();
+
+// output new location to table on sales.html
+function handleSubmit(event) {
+  event.preventDefault();
+  const location = event.target.location.value;
+  const minCustomers = parseInt(event.target.minCustomers.value);
+  const maxCustomers = parseInt(event.target.maxCustomers.value);
+  const avgCookiesPerCustomer = parseFloat(event.target.avgCookies.value);
+
+  const newCity = new City(location, minCustomers, maxCustomers, avgCookiesPerCustomer);
+  allStoreLocations.push(newCity);
+  allStoreLocations[(allStoreLocations.length) - 1].render();
+
+  // TODO: add new hourly cell value to totals cell value
+  // const x = document.getElementsByName('tfoot').rows.cells.value;
+  // const newTotal = x + allStoreLocations[(allStoreLocations.length) - 1];
+  // document.getElementsByName('th').innerHTML = newTotal;
+}
+
+
