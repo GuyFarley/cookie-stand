@@ -17,6 +17,24 @@
     </nav>
   </header>
   <main>
+    <form id="cookie-stand-form">
+      <fieldset>
+        <legend>New Location</legend>
+        <label for="location">User Location</label>
+        <input type="text" name="location" required>
+
+        <label for="minCustomers">Minimum Customers Per Hour</label>
+        <input type="number" name="minCustomers" required>
+
+        <label for="maxCustomers">Maximum Customers Per Hour</label>
+        <input type="number" name="maxCustomers" required>
+
+        <label for="avgCookies">Average Cookies Per Customer</label>
+        <input type="number" name="avgCookies" step=".1" required>
+
+        <button>Submit</button>
+      </fieldset>
+    </form>
     <div id="location-info">
     </div>
   </main>
