@@ -132,6 +132,7 @@ function getTotalsByHour() {
 }
 getTotalsByHour();
 
+
 // output new location to table on sales.html
 function handleSubmit(event) {
   event.preventDefault();
@@ -144,6 +145,9 @@ function handleSubmit(event) {
   allStoreLocations.push(newCity);
   allStoreLocations[(allStoreLocations.length) - 1].render();
 
+  // for (let i = 0; i < hours.length; i++) {
+
+  // }
   // TODO: add new hourly cell value to totals cell value
   // const x = document.getElementsByName('tfoot').rows.cells.value;
   // const newTotal = x + allStoreLocations[(allStoreLocations.length) - 1];
