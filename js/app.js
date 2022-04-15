@@ -40,12 +40,17 @@ function randomInRange(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+let tableFoot = null;
+
 // table
 function createTable() {
   const containerElem = document.getElementById('location-info');
 
   tableElem = document.createElement('table');
   containerElem.appendChild(tableElem);
+
+  tableFoot = document.createElement('tfoot');
+  tableElem.appendChild(tableFoot);
 }
 createTable();
 
@@ -92,8 +97,6 @@ City.prototype.render = function () {
 const cookieFormElem = document.getElementById('cookie-stand-form');
 cookieFormElem.addEventListener('submit', handleSubmit);
 
-
-
 const allStoreLocations = [
   new City('Seattle', 23, 65, 6.3),
   new City('Tokyo', 3, 24, 1.2),
@@ -106,12 +109,7 @@ for (let i = 0; i < allStoreLocations.length; i++) {
   allStoreLocations[i].render();
 }
 
-// totals row
-
 function getTotalsByHour() {
-  const tableFoot = document.createElement('tfoot');
-  tableElem.appendChild(tableFoot);
-
   const hourlyTotalsRow = document.createElement('tr');
   tableFoot.appendChild(hourlyTotalsRow);
 
@@ -121,6 +119,7 @@ function getTotalsByHour() {
 
   for (let i = 0; i < hours.length; i++) {
     let hourlyTotalsCell = document.createElement('th');
+    hourlyTotalsCell.id = 'sales'
     hourlyTotalsRow.appendChild(hourlyTotalsCell);
 
     let totalSum = 0;
@@ -132,7 +131,6 @@ function getTotalsByHour() {
 }
 getTotalsByHour();
 
-// output new location to table on sales.html
 function handleSubmit(event) {
   event.preventDefault();
   const location = event.target.location.value;
@@ -142,12 +140,10 @@ function handleSubmit(event) {
 
   const newCity = new City(location, minCustomers, maxCustomers, avgCookiesPerCustomer);
   allStoreLocations.push(newCity);
-  allStoreLocations[(allStoreLocations.length) - 1].render();
+  newCity.render();
 
-  // TODO: add new hourly cell value to totals cell value
-  // const x = document.getElementsByName('tfoot').rows.cells.value;
-  // const newTotal = x + allStoreLocations[(allStoreLocations.length) - 1];
-  // document.getElementsByName('th').innerHTML = newTotal;
+  tableFoot.innerHTML = '';
+  getTotalsByHour();
 }
 
 
