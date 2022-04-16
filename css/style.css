@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(241, 212, 216);
+  background-color: rgb(249, 192, 186);
 }
 
 header {
@@ -19,8 +19,9 @@ header div {
 }
 
 header h1 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 42pt;
+  font-family: 'Amatic SC', cursive;
+  color: rgb(116, 21, 21);
+  font-size: 68pt;
   margin-left: 30px;
   padding-top: 10px;
 }
@@ -31,8 +32,17 @@ nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 14pt;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 16pt;
+  color: brown;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(187, 59, 59);
 }
 
 #gallery {
@@ -43,9 +53,9 @@ nav {
 
 #gallery img {
   border-style: solid;
-  border-color: brown;
-  border-width: 3px;
-  padding: 4px;
+  border-radius: 3px;
+  border-color: rgb(116, 21, 21);
+  border-width: 5px;
 }
 
 #welcome {
@@ -67,9 +77,9 @@ nav {
 
 #hero img {
   border-style: solid;
-  border-color: brown;
-  border-width: 3px;
-  padding: 4px;
+  border-radius: 3px;
+  border-color: rgb(116, 21, 21);
+  border-width: 5px;
 }
 
 #locations {
@@ -131,13 +141,9 @@ footer p {
 
 footer img {
   border-style: solid;
-  border-color: brown;
-  border-width: 3px;
-}
-
-#salesTitle {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 34pt;
+  border-radius: 3px;
+  border-color: rgb(116, 21, 21);
+  border-width: 5px;
 }
 
 #location-info {
@@ -167,6 +173,7 @@ td {
 form {
   display: flex;
   justify-content: center;
+  margin-top: 100px;
 }
 
 fieldset {
@@ -174,6 +181,8 @@ fieldset {
   height: 250px;
   display: flex;
   flex-direction: column;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 12pt;
 }
 
 fieldset label {
@@ -188,4 +197,6 @@ fieldset button {
   width: 100px;
   align-self: center;
   margin-top: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 12pt;
 }

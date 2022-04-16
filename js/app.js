@@ -70,6 +70,10 @@ for (let i = 0; i < hours.length; i++) {
   headerCell.textContent = hours[i];
 }
 
+const blankTotalCell = document.createElement('th');
+headerRow.appendChild(blankTotalCell);
+blankTotalCell.textContent = 'Totals';
+
 // data rows
 City.prototype.render = function () {
   const tableBody = document.createElement('tbody');
@@ -116,18 +120,23 @@ function getTotalsByHour() {
   const blankTotalCell = document.createElement('th');
   hourlyTotalsRow.appendChild(blankTotalCell);
   blankTotalCell.textContent = 'Totals';
+  let grandTotal = 0;
 
   for (let i = 0; i < hours.length; i++) {
     let hourlyTotalsCell = document.createElement('th');
-    hourlyTotalsCell.id = 'sales'
+    hourlyTotalsCell.id = 'sales';
     hourlyTotalsRow.appendChild(hourlyTotalsCell);
 
     let totalSum = 0;
     for (let j = 0; j < allStoreLocations.length; j++) {
       totalSum = totalSum + allStoreLocations[j].randomCookiesSoldPerHour[i];
     }
+    grandTotal += totalSum;
     hourlyTotalsCell.textContent = totalSum;
   }
+  const grandTotalCell = document.createElement('th');
+  hourlyTotalsRow.appendChild(grandTotalCell);
+  grandTotalCell.textContent = grandTotal;
 }
 getTotalsByHour();
 
